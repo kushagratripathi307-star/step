@@ -1,13 +1,14 @@
 /**
  * OOPSBannerApp
  *
- * Use Case 1 (UC1):
- * Prints the literal text "OOPS" to the console.
+ * Use Case 2 (UC2):
+ * Displays "OOPS" in a large banner made from spaces and '*' characters
+ * using individual print statements for each line.
  *
- * This is the entry-level implementation of the OOPS Banner App.
+ * This version enhances the visual representation of the application.
  *
  * @author Kushagra Tripathi
- * @version 1.0
+ * @version 2.0
  */
 
 public class OOPSBannerApp {
@@ -19,8 +20,14 @@ public class OOPSBannerApp {
      */
     public static void main(String[] args) {
 
-        // Print literal string
-        System.out.println("OOPS");
+        // Print 7-line ASCII banner for "OOPS"
+        System.out.println(" ****   ****   ****    **** ");
+        System.out.println("*    * *    * *    *  *     ");
+        System.out.println("*    * *    * *    *  *     ");
+        System.out.println("*    * *    * *****    **** ");
+        System.out.println("*    * *    * *            *");
+        System.out.println("*    * *    * *            *");
+        System.out.println(" ****   ****  *        **** ");
 
     }
 }
