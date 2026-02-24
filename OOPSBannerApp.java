@@ -1,14 +1,14 @@
 /**
  * OOPSBannerApp
  *
- * Use Case 2 (UC2):
- * Displays "OOPS" in a large banner made from spaces and '*' characters
- * using individual print statements for each line.
- *
- * This version enhances the visual representation of the application.
+ * Use Case 3 (UC3):
+ * Refactors the banner rendering to use String.join() for constructing each
+ * line.
+ * This improves memory efficiency by avoiding the '+' operator for string
+ * concatenation.
  *
  * @author Kushagra Tripathi
- * @version 2.0
+ * @version 3.0
  */
 
 public class OOPSBannerApp {
@@ -20,14 +20,17 @@ public class OOPSBannerApp {
      */
     public static void main(String[] args) {
 
-        // Print 7-line ASCII banner for "OOPS"
-        System.out.println(" ****   ****   ****    **** ");
-        System.out.println("*    * *    * *    *  *     ");
-        System.out.println("*    * *    * *    *  *     ");
-        System.out.println("*    * *    * *****    **** ");
-        System.out.println("*    * *    * *            *");
-        System.out.println("*    * *    * *            *");
-        System.out.println(" ****   ****  *        **** ");
+        // Print 7-line ASCII banner for "OOPS" using String.join()
+        // Each line is constructed by joining string segments representing parts of
+        // each letter.
+
+        System.out.println(String.join(" ", " **** ", " **** ", " **** ", "  **** "));
+        System.out.println(String.join(" ", "*    *", "*    *", "*    *", "*      "));
+        System.out.println(String.join(" ", "*    *", "*    *", "*    *", "*      "));
+        System.out.println(String.join(" ", "*    *", "*    *", "***** ", "  **** "));
+        System.out.println(String.join(" ", "*    *", "*    *", "*     ", "      *"));
+        System.out.println(String.join(" ", "*    *", "*    *", "*     ", "      *"));
+        System.out.println(String.join(" ", " **** ", " **** ", "*     ", "  **** "));
 
     }
 }
