@@ -1,67 +1,53 @@
 /**
  * OOPSBannerApp
  *
- * Use Case 6 (UC6):
- * Refactors the banner rendering by extracting hardcoded character patterns
- * into reusable static helper methods.
- * This adheres to the DRY principle and improves modularity and
- * maintainability.
+ * Use Case 7 (UC7):
+ * Refactors the banner rendering by encapsulating character patterns into a
+ * static inner class CharacterPatternMap.
+ * Replaces separate helper methods with a modular system utilizing
+ * constructors, getters, and StringBuilder.
  *
  * @author Kushagra Tripathi
- * @version 6.0
+ * @version 7.0
  */
-
 public class OOPSBannerApp {
 
     /**
-     * Returns the 7-line string array representation of the letter 'O'
-     *
-     * @return String array for letter O
+     * Static inner class to encapsulate character data and its corresponding banner
+     * pattern.
      */
-    public static String[] getLetterO() {
-        return new String[] {
-                " **** ",
-                "*    *",
-                "*    *",
-                "*    *",
-                "*    *",
-                "*    *",
-                " **** "
-        };
-    }
+    static class CharacterPatternMap {
+        private char character;
+        private String[] pattern;
 
-    /**
-     * Returns the 7-line string array representation of the letter 'P'
-     *
-     * @return String array for letter P
-     */
-    public static String[] getLetterP() {
-        return new String[] {
-                " **** ",
-                "*    *",
-                "*    *",
-                "***** ",
-                "*     ",
-                "*     ",
-                "*     "
-        };
-    }
+        /**
+         * Constructor
+         * 
+         * @param character The character
+         * @param pattern   The 7-line banner pattern for the character
+         */
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-    /**
-     * Returns the 7-line string array representation of the letter 'S'
-     *
-     * @return String array for letter S
-     */
-    public static String[] getLetterS() {
-        return new String[] {
-                "  **** ",
-                "*      ",
-                "*      ",
-                "  **** ",
-                "      *",
-                "      *",
-                "  **** "
-        };
+        /**
+         * Getter for the character
+         * 
+         * @return The character
+         */
+        public char getCharacter() {
+            return character;
+        }
+
+        /**
+         * Getter for the pattern array
+         * 
+         * @return The 7-line string array pattern
+         */
+        public String[] getPattern() {
+            return pattern;
+        }
     }
 
     /**
@@ -71,23 +57,60 @@ public class OOPSBannerApp {
      */
     public static void main(String[] args) {
 
-        // Obtain the character arrays using static helper methods
-        String[] letterO = getLetterO();
-        String[] letterP = getLetterP();
-        String[] letterS = getLetterS();
+        // Setup the library of characters
+        CharacterPatternMap[] mappings = {
+                new CharacterPatternMap('O', new String[] {
+                        " **** ",
+                        "*    *",
+                        "*    *",
+                        "*    *",
+                        "*    *",
+                        "*    *",
+                        " **** "
+                }),
+                new CharacterPatternMap('P', new String[] {
+                        " **** ",
+                        "*    *",
+                        "*    *",
+                        "***** ",
+                        "*     ",
+                        "*     ",
+                        "*     "
+                }),
+                new CharacterPatternMap('S', new String[] {
+                        "  **** ",
+                        "*      ",
+                        "*      ",
+                        "  **** ",
+                        "      *",
+                        "      *",
+                        "  **** "
+                })
+        };
 
-        // Initialize a String array to store each line of the 7-line "OOPS" banner
+        String word = "OOPS";
         String[] banner = new String[7];
 
-        // Construct each line by combining the corresponding lines of each letter
+        // Construct each line of the banner using StringBuilder
         for (int i = 0; i < banner.length; i++) {
-            banner[i] = String.join(" ", letterO[i], letterO[i], letterP[i], letterS[i]);
+            StringBuilder sb = new StringBuilder();
+
+            for (char c : word.toCharArray()) {
+                // Find the pattern for the current character
+                for (CharacterPatternMap map : mappings) {
+                    if (map.getCharacter() == c) {
+                        sb.append(map.getPattern()[i]).append(" ");
+                        break;
+                    }
+                }
+            }
+
+            banner[i] = sb.toString();
         }
 
-        // Use an enhanced for-loop to iterate through the array and print each line
+        // Display the "OOPS" banner
         for (String line : banner) {
             System.out.println(line);
         }
-
     }
 }
